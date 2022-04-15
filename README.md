@@ -169,6 +169,43 @@ https://maker.ifttt.com/trigger/{event}/with/key/{key}
 Where `{event}` should be replaced with the "ui-spy" or whichever event name you selected.
 And `{key}` should be replaced with the key obtained from the documentation.
 
+## Home Assistant Setup
+
+Home assistant can also be used with the ifttt webhook.  Simply update the URL with the path of your webhook created with your automation.
+
+An automation to alert via the Home Assistant app would look like the following.
+
+```yaml
+- id: '388483'
+  alias: uispy webhook
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: uispy-webhook-fsd888f34-d8jf
+  condition: []
+  action:
+  - service: notify.app_phone
+    data:
+      message: Alert! {{ trigger.json.value1 }} is {{ trigger.json.value2 }}
+      data:
+        url: '{{ trigger.json.value3 }}'
+  mode: single
+```
+
+The ifttt config would look like the following.
+
+```toml
+ifttt = "https://homeassistant/api/webhook/uispy-webhook-fsd888f34-d8jf"
+```
+
+An alert with this automation would result in the following.
+
+```yaml
+service_data:
+  message: Alert! Camera G3 Instant is Available
+  data:
+    url: https://store.ui.com/products/unifi-protect-g3-instant-camera
+```
 
 ## Development
 
