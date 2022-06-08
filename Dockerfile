@@ -54,6 +54,7 @@ RUN jlink \
 
 FROM  ubuntu:latest
 
+
 COPY --from=build /app/jre /jre
 ENV JAVA_HOME="/jre"
 
