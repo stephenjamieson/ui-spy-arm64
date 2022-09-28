@@ -1,5 +1,5 @@
 # If you change this major version, change the --multi-release jdeps flag below
-FROM arm64v8/eclipse-temurin:18 AS build
+FROM arm64v8/eclipse-temurin:19 AS build
 
 RUN apt-get install \
       # Binutils provides objcopy binary which is used by --strip-debug jlink flag.
